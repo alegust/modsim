@@ -111,8 +111,8 @@ public class School2 : MonoBehaviour
                 spawnPoint[j] = Mathf.Clamp(spawnPoint[j], m_bounds.bounds.min[j], m_bounds.bounds.max[j]);
 
             Hunter hunter = Instantiate(m_fishPrefab, spawnPoint, m_fishPrefab.transform.rotation) as Hunter;
-            hunter.Position = spawnPoint;
-            hunter.Velocity = Random.insideUnitSphere;
+            hunter.PositionH = spawnPoint;
+            hunter.VelocityH = Random.insideUnitSphere;
             hunter.School2 = this;
             hunter.transform.parent = this.transform;
             yield return hunter;
@@ -122,7 +122,7 @@ public class School2 : MonoBehaviour
     public Vector3 GetForceFromBounds(Hunter hunter)
     {
         Vector3 force = new Vector3();
-        Vector3 centerToPos = (Vector3)hunter.Position - transform.position;
+        Vector3 centerToPos = (Vector3)hunter.PositionH - transform.position;
         Vector3 minDiff = centerToPos + m_bounds.size * 0.5f;
         Vector3 maxDiff = centerToPos - m_bounds.size * 0.5f;
         float friction = 0.0f;
@@ -139,7 +139,7 @@ public class School2 : MonoBehaviour
             friction += Mathf.Abs(force[i]);
         }
 
-        force += 0.1f * friction * (Vector3)hunter.Velocity;
+        force += 0.1f * friction * (Vector3)hunter.VelocityH;
         return -m_boundsForceFactor * force;
     }
 }

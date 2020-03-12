@@ -57,9 +57,9 @@ public class BoidManager : MonoBehaviour
         float radiusSq = radius * radius;
         foreach (var other in m_hunters)
         {
-            if (other != hunter && (other.Position - hunter.PositionH).sqrMagnitude < radiusSq)
+            if (other != hunter && (other.PositionH - hunter.PositionH).sqrMagnitude < radiusSq)
                 yield return other;
         }
-    } 
+    }
 
 }

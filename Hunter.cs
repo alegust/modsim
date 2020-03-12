@@ -21,7 +21,7 @@ using System.Collections;
     {
         //colisionDetection();
         //Clear acceleration from last frame
-        AccelerationH = Vector3.zero;
+        AccelerationH = Vector2.zero;
 
         //Apply forces
         AccelerationH += (Vector2)School2.GetForceFromBounds(this);
@@ -63,20 +63,22 @@ using System.Collections;
             //Separation force
             if (distance < School2.SeparationRadius)
             {
-                separationForce += School2.SeparationForceFactor * ((School2.SeparationRadius - distance) / distance) * (PositionH - neighbor.Position);
+              //  separationForce += School2.SeparationForceFactor * ((School2.SeparationRadius - distance) / distance) * (PositionH - neighbor.PositionH);
             }
 
             //Calculate average position/velocity here
         }
 
         //Set cohesio n/alignment forces here
-
+        Debug.Log(alignmentForce);
+        Debug.Log(cohesionForce);
+        Debug.Log(separationForce);
         return alignmentForce + cohesionForce + separationForce;
     }
 
     Vector2 GetConstraintSpeedForce()
     {
-        Vector2 force = Vector3.zero;
+        Vector2 force = Vector2.zero;
 
         //Apply drag
         force -= School2.Drag * VelocityH;

@@ -21,6 +21,7 @@ public class Fisk : MonoBehaviour
         }
 
         transform.position = m_hunter.PositionH;
+        Debug.Log(m_hunter.PositionH);
         transform.position += new Vector3(0, 0, transform.parent.position.z); //inherit z-position
 	}
 }
